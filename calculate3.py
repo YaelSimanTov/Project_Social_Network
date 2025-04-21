@@ -157,12 +157,12 @@ def main():
      Calculate the small-world property metrics
      ********************************************************************************************
      """
-     # # Calculate the small-world property metrics
-     # avg_shortest_path_length, avg_clustering_coefficient = small_world_property(G)
-     #
-     # # Print the results
-     # print(f"Average Shortest Path Length: {avg_shortest_path_length:.4f}")
-     # print(f"Average Clustering Coefficient: {avg_clustering_coefficient:.4f}")
+     # Calculate the small-world property metrics
+     avg_shortest_path_length, avg_clustering_coefficient = small_world_property(G)
+
+     # Print the results
+     print(f"Average Shortest Path Length: {avg_shortest_path_length:.4f}")
+     print(f"Average Clustering Coefficient: {avg_clustering_coefficient:.4f}")
 
 
      """
@@ -170,29 +170,29 @@ def main():
      Compute centrality values
      ********************************************************************************************
      """
-     # category_dict = {
-     #      "politician": politician_nodes,
-     #      "government": government_nodes
-     # }
+     category_dict = {
+          "politician": politician_nodes,
+          "government": government_nodes
+     }
 
-     # print("Visualizing top nodes by betweenness centrality:")
-     # visualize_top_nodes_by_centrality(G, nx.betweenness_centrality, category_dict, top_n=100, title="Top 100 Nodes by Betweenness Centrality")
+     print("Visualizing top nodes by betweenness centrality:")
+     visualize_top_nodes_by_centrality(G, nx.betweenness_centrality, category_dict, top_n=100, title="Top 100 Nodes by Betweenness Centrality")
 
-     # print("Visualizing top nodes by degree centrality:")
-     # visualize_top_nodes_by_centrality(G, nx.degree_centrality, category_dict, top_n=100,
-     #                                   title="Top 100 Nodes by Degree Centrality")
+     print("Visualizing top nodes by degree centrality:")
+     visualize_top_nodes_by_centrality(G, nx.degree_centrality, category_dict, top_n=100,
+                                       title="Top 100 Nodes by Degree Centrality")
 
-     # print("\nVisualizing top nodes by closeness centrality:")
-     # visualize_top_nodes_by_centrality(G, nx.closeness_centrality, category_dict, top_n=100,
-     #                                   title="Top 100 Nodes by Closeness Centrality")
+     print("\nVisualizing top nodes by closeness centrality:")
+     visualize_top_nodes_by_centrality(G, nx.closeness_centrality, category_dict, top_n=100,
+                                       title="Top 100 Nodes by Closeness Centrality")
 
      """
      ********************************************************************************************
      Creating a bar chart (histogram) of the degree distribution
      ********************************************************************************************
      """
-     # analyze_graph(G)
-     # analyze_graph(G_full)
+     analyze_graph(G)
+     analyze_graph(G_full)
      analyze_graph(G_politician)
      analyze_graph(G_government)
 

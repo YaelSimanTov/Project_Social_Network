@@ -46,6 +46,48 @@ def calculate_average_degree(G):
     return sum(dict(G.degree()).values()) / len(G.nodes)
 
 
+def compute_graph_diameter(graph):
+    """
+    Computes the diameter of a connected graph.
+    If the graph is not connected, it will raise an exception unless it's handled.
+
+    Parameters:
+        graph (networkx.Graph): The input graph.
+
+    Returns:
+        int: Diameter of the graph.
+    """
+    if nx.is_connected(graph):
+        diameter = nx.diameter(graph)
+        print(f"The diameter of the graph is: {diameter}")
+        return diameter
+    else:
+        print("The graph is not connected. Calculating diameter for the largest connected component.")
+        largest_cc = max(nx.connected_components(graph), key=len)
+        subgraph = graph.subgraph(largest_cc)
+        diameter = nx.diameter(subgraph)
+        print(f"The diameter of the largest connected component is: {diameter}")
+        return diameter
+
+
+def get_min_value_from_centrality(filename):
+    """
+    Reads a text file with at least two columns, and returns
+    the minimum value from the second column.
+
+    Parameters:
+        filename (str): Path to the text file.
+
+    Returns:
+        float: The minimum value found in the second column.
+    """
+    # Read the file into a DataFrame, assuming space-separated values and no header
+    df = pd.read_csv(filename, sep=r"\s+", header=None, engine='python')
+
+    # Extract and return the minimum value in the second column (index 1)
+    return df[1].min()
+
+
 # Example usage:
 if __name__ == "__main__":
     # Load edge and target data
@@ -74,5 +116,19 @@ if __name__ == "__main__":
     avg_deg = calculate_average_degree(G)
     print(f"Average Degree of the graph: {avg_deg:.6f}")
 
+    #*********************************************************************************************************
+    diameter = compute_graph_diameter(G)
+    print("Graph Diameter:", diameter)
 
+    #**********************************************************************************************************
+
+    # min_val = get_min_value_from_centrality("degree_centrality_values.txt")
+    # print("Minimum value in column 2:", min_val)
+    #
+    #
+    # min_val = get_min_value_from_centrality("beetweenness_centrality_values.txt")
+    # print("Minimum value in column 2:", min_val)
+    #
+    # min_val = get_min_value_from_centrality("closeness_centrality_values.txt")
+    # print("Minimum value in column 2:", min_val)
 
